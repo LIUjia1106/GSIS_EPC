@@ -1,0 +1,57 @@
+&ITERATION
+TOL = 1.0d-6,                       !iteration tolerance
+TMAX = 1d5,                       !Maximum iteration step
+/
+
+&GSIS
+ACCFLAG = 0,                        !0-CIS, 1-GSIS
+KN_THR = 1.d0,                      !threhold value in GSIS correction
+/
+
+&VELMSH
+NPOLE = 80,                         !# of discrete polar angle
+NAZIM = 160,                         !# of discrete azimuthal angle
+/
+
+&DG
+DEG = 3,                            !degree of polynomial in DG discretization
+/
+
+&FILENAME   
+FNAME_MSH = './mesh/A2_Nx21_Ny5.msh',                           !file name for spatial mesh
+FNAME_ELECTRON_BAND = './material/Electron_Band.dat',            !file name for elctron band structure
+FNAME_PHONON_DISPERSION = './material/Phonon_Dispersion.dat',    !file name for phonon dispersion relation
+FNAME_SCATTERING_MATRIX = './material/Scattering_Matrix.dat',    !file name for scattering matrix input
+/
+
+&PHYS
+T0 =  300.d0,                        !global reference temperature T0 [K]
+gamma = 0.2d0,                         !size factor: H/L
+/
+
+&FLOW
+Ce_s = 1.d0                         !default dimensionless parameters input
+Cp_S = 1.d0
+Ve_s = 1.d0
+Vp_s = 1.d0
+Kn_e_p = 1.d2
+Kn_p_e = 1.d2
+Kn_p_p = 1.d-2
+/
+
+&N_BC
+NBC = 4,
+/
+
+&BC
+BC_NAME = 'SWall', 'NWall', 'EWall', 'WWall',   !Name of boundaries
+BC_PHYID = 11, 12, 13, 14,                      !Physical entity name associated with mesh
+BC_TYP   = 1, 1, 1, 1, 	                        !Boundary type: 1-thermalisation, 2-adiabatic, 3-period
+BC_TYP_P = 1, 2, 1, 1,                          !Consider electron and phonon can have different types of boundary condition
+BC_TEMP = 0.d0, 1.d0, 0.d0, 0.d0,               !Electron boundary temperature
+BC_TEMP_P = 0.d0, 0.d0, 0.d0, 0.d0,             !Phonon boundary temperature
+BC_XOFF = 0.d0, 0.d0, 0.d0, 0.d0,               !offset for periodic condition
+BC_YOFF = 0.d0, 0.d0, 0.d0, 0.d0,               !offset for periodic condition
+/
+
+
